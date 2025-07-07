@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Notifications</title>
+    
+    <link rel="stylesheet" href="/static/styleHome.css">
+   
+    <link rel="stylesheet" href="/static/styleNotifications.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+    <div id="notifications-data" data-json='{{.NotificationsJson}}' style="display: none;"></div>
+
+</head>
+
+<!-- Store JSON in data attributes (hidden divs) -->
+
+<body>
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+
+        <div class="layout">
+            
+            <!-- Middle Section -->
+            <div id="notification-container">
+                
+            </div>
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+        </div>
+    </div>
+
+    
+    <script defer src="/js/elementConstructor.js"></script>
+    <script defer src="/js/NotificationsPage.js"></script>
+    <script defer src="/js/loadComponent.js"></script>
+    <script defer src="/js/sendJsonReq.js"></script>
+    <script defer src="/js/SseNotification.js" defer></script>
+</body>
+
+</html>

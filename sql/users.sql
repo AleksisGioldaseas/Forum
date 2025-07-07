@@ -1,0 +1,23 @@
+CREATE TABLE User (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserName TEXT UNIQUE COLLATE NOCASE NOT NULL,
+    Email TEXT UNIQUE COLLATE NOCASE NOT NULL,
+    PasswordHash TEXT NOT NULL,
+    ProfilePic TEXT,
+    Bio TEXT,
+    TotalKarma INTEGER NOT NULL DEFAULT 0,
+    Created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Removed INTEGER CHECK (Removed IN (1, 0)) DEFAULT 0,
+    Deleted INTEGER CHECK (Deleted IN (1, 0)) DEFAULT 0,
+    Role INTEGER NOT NULL,
+    HasUnseenNotifications BOOLEAN NOT NULL DEFAULT FALSE, --TODO: this seem deprecated
+    OAuthSub TEXT DEFAULT NULL,
+    Salt TEXT NOT NULL DEFAULT '',
+    Banned INTEGER CHECK (Banned IN (1, 0)) DEFAULT 0,
+    BanExpDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    BanReason TEXT NOT NULL DEFAULT '',
+    BannedBy TEXT NOT NULL DEFAULT ''
+);
+
+CREATE INDEX idx_user_oauth_sub ON User(OAuthSub) WHERE OAuthSub IS NOT NULL;
+CREATE INDEX idx_user_username ON User (UserName);

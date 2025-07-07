@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Super Report</title>
+    <!-- <link rel="stylesheet" href="/static/stylePost.css"> -->
+    <link rel="stylesheet" href="/static/styleHome.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+    <link rel="stylesheet" href="/static/stylePost.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+
+    <div id="target-post-json" data-value='{{.JsonPost}}' style="display: none;"></div>
+    <div id="target-comment-json" data-value='{{.JsonComment}}' style="display: none;"></div>
+    <div id="target-user-json" data-value='{{.JsonUser}}' style="display: none;"></div>
+
+
+</head>
+
+
+
+<body>
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- Placeholder for Header -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+        <div class="layout">
+
+            <div id="target-container" class="target-container">
+                <b>
+                    <h2>SUPER REPORT TARGET</h2>
+                </b>
+
+            </div>
+            <p></p>
+
+            <!-- Middle Section -->
+            <div class="post-container">
+                <div style="display: block;">
+                    {{ if .Post }}
+                    <!-- {{ .Post }} -->
+                    <div id="post-id" data-value="{{.Post.ID}}"></div>
+                    {{ else }}
+                    <div id="post-id" data-value="0"></div>
+                    {{ end }}
+                    {{ if .Comment }}
+                    <!-- {{ .Comment }} -->
+                    <div id="comment-id" data-value="{{.Comment.ID}}"></div>
+                    {{ else }}
+                    <div id="comment-id" data-value="0"></div>
+                    {{ end }}
+                    {{ if .User }}
+                    <!-- {{ .User }} -->
+                    <div id="user-id" data-value="{{.User.ID}}"></div>
+                    {{ else }}
+                    <div id="user-id" data-value="0"></div>
+                    {{ end }}
+                </div>
+                <!-- <form id="createPostForm" method="POST"> -->
+                <p>Title:</p>
+                <input id="postTitle" name="title" style="width: 600px;" type="text">
+
+                <p>Body:</p>
+                <textarea id="postBody" name="body" cols="40" rows="5"
+                    style="width: 100%; height: 300px; display:block;" type="textarea"></textarea>
+
+                <button id="sendButtonCreateSuperReport">Submit Super Report</button>
+
+                <!-- </form> -->
+            </div>
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+        </div>
+    </div>
+
+    <script defer src="/js/elementConstructor.js"></script>
+    <script src="/js/loadComponent.js"></script>
+    <script src="/js/sendJsonReq.js"></script>
+    <script src="/js/SseNotification.js" defer></script>
+    <script defer src="/js/SuperReportScript.js"></script>
+</body>
+
+</html>

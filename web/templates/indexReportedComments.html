@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Removed Comments</title>
+    
+    <link rel="stylesheet" href="/static/stylePost.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+    <div id="comments-json" data-value='{{.JsonReportedComments}}' style="display: none;"></div>
+
+
+
+</head>
+
+<!-- Store JSON in data attributes (hidden divs) -->
+
+<body>
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+
+        <div class="layout">
+            
+            <!-- Middle Section -->
+            <div id="comments-section" class="comments-section">
+                
+
+            </div>
+
+            <!-- Right Block -->
+            <div id="right-block-container"class="comments-section"></div>
+        </div>
+    </div>
+
+    <script defer src="/js/CommentDelegator.js"></script>
+    <script src="/js/elementConstructor.js"></script>
+    <script src="/js/loadComponent.js"></script>
+    <script src="/js/sendJsonReq.js"></script>
+    <script src="/js/SseNotification.js" defer></script>
+    <script src="/js/IndexReportedCommentsScript.js" defer></script>
+</body>
+
+</html>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        try {
+            const activeUserRole = document.getElementById('active-user-role').dataset.value
+            const activeUserName = document.getElementById('active-user-name').dataset.value
+            const raw = `{{ .JsonReportedComments }}`;
+            const parsed = JSON.parse(raw);
+            allReportedComments = parsed.comments || [];
+            appendReportedComments(allReportedComments, activeUserRole, activeUserName)
+
+
+
+        } catch (err) {
+            console.error("Error parsing posts JSON", err);
+        }
+    });
+</script>

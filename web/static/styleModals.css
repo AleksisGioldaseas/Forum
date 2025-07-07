@@ -1,0 +1,510 @@
+/* Ensure the background of the page gets blurred when the modal is open */
+body.blurred {
+    filter: blur(5px);
+    /*overflow: hidden; /* Prevent scrolling when blurred */
+}
+
+/* Modal appearance */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1100; /* Above body content */
+    width: 350px;
+    max-width: 100%;
+}
+
+/* Modal content */
+.modal-content {
+    text-align: center;
+}
+
+/* Close button for the modal */
+.close-login {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Add a backdrop if needed */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    z-index: 1000; /* Ensure it is below the modal */
+    display: none; /* Initially hidden */
+}
+
+/* Prevent scrolling on body when modal is open */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* Add some styling for better separation */
+.section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.section h3 {
+    margin-top: 0;
+}
+
+.section input, .section textarea, .section select {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+    padding: 5px;
+}
+
+.response {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+
+.hidden {
+    display: none !important; /* Using !important to override other conflicting styles */
+}
+
+/* -------------------- */
+/* Specific Styling for Login Modal */
+/* -------------------- */
+
+/* Sign-in heading */
+h2 {
+    margin-bottom: 10px;
+}
+
+/* Separator Line with "with" in the middle */
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.separator::before,
+.separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.separator span {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #666;
+    background: #fff;
+}
+
+/* Third-party login buttons */
+.oauth-providers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.oauth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* .social-login {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+} */
+
+.google-login {
+    background: #dd4b39;
+    color: white;
+}
+
+.github-login {
+    background: #333;
+    color: white;
+}
+
+/* "or" separator text */
+.or-text {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Username & Password input fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Sign-in button */
+.signin-button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Bottom links (Sign up & Forgot Password) */
+.bottom-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.bottom-links a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.bottom-links a:hover {
+    text-decoration: underline;
+}
+
+#search-query {
+    width: 250px; /* Set a fixed width */
+    max-width: 100%; /* Ensure it remains responsive */
+}
+
+.search-btn {
+  background-color: #131D4F;
+  color: white;
+  font-family: sans-serif;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  display: inline-flex;         
+  align-items: center;         
+  justify-content: center;
+  line-height: 1.5;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+
+.search-btn:hover {
+    background-color: #2a304e;
+}
+
+.password-container {
+    position: relative;
+}
+
+/* confirm buttons */
+.cnf-btn {
+    background-color: #fff1a8; 
+    border: none;
+    margin-top: 7px; 
+    padding: 5px;
+    cursor: pointer;
+}
+
+.report-btn {
+    color: "red";
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.post-btn {
+     background-color: #131D4F; 
+     color: white;
+     cursor: pointer; /* Shows hand cursor on hover */
+}
+
+.post-btn:hover {
+    background-color: #13436e;
+}
+
+.create-post-btn {
+        background-color: #131D4F;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px; /* More rounded */
+    padding: 10px 20px;   /* Optional: to keep size consistent */
+}
+
+.create-post-btn:hover {
+    background-color: #13436e;
+}
+
+#sendButtonLogout,
+#sendButtonLogoutAllElse {
+    background-color: #131D4F;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px; /* More rounded */
+    padding: 10px 20px;   /* Optional: to keep size consistent */
+}
+
+#sendButtonLogout:hover,
+#sendButtonLogoutAllElse:hover {
+    background-color: #13436e;
+}
+
+
+
+.sticky-note.register-note, .sticky-note.login-note {
+            display: flex;
+    flex-wrap: wrap; /* allows wrapping to new line if needed */
+    gap: 6px; /* controls spacing between buttons */
+    padding: 10px;
+}
+
+.sticky-note.add-remove-categories{
+        display: flex;
+    flex-wrap: wrap; /* allows wrapping to new line if needed */
+    gap: 6px; /* controls spacing between buttons */
+    padding: 10px;
+}
+
+.sendButtonLogout, .sendButtonLogoutAllElse {
+ background-color: #131D4F; 
+     color: white;
+     cursor: pointer; /* Shows hand cursor on hover */
+}
+
+.sticky-note.buttons-note {
+    display: flex;
+    justify-content: space-around; /* Space buttons evenly */
+    align-items: center; /* Center buttons vertically */
+    padding: 6px;
+    background-color: #a1aab3;     
+    border-radius: 10px;
+    width: 200px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+    /* border: 2px solid #595959; Add border */
+    border-radius: 15px;
+    box-shadow: 7px 8px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    top: 10%;
+    border: 1px solid #000000; /* Add width and style */
+}
+
+.sticky-note.buttons-note button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Circular buttons */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    background: radial-gradient(circle, #f8b35d 20%, #ef9235 80%);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.logged-in {
+    font-weight: lighter;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.login-btn {
+      display: block;         /* Makes button respect block-level centering */
+    margin: 1 auto;         /* Horizontally centers it */
+    background-color: #131D4F;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+ background-color: #13436e;
+}
+
+#open-register {
+     display: block;         /* Makes button respect block-level centering */
+    margin: 1 auto;         /* Horizontally centers it */
+    background-color: #131D4F;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.2s;
+}
+
+#open-register:hover {
+    background-color: #13436e;
+}
+
+.sticky-note.buttons-note button:hover {
+    background: radial-gradient(circle, #fbc98c 10%, #f0952f 90%);
+    transform: scale(1.05);
+}
+
+/* Default button background */
+.notifications-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    background: radial-gradient(circle, #f8b35d 20%, #ef9235 80%);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.notifications-button.notification-active {
+    background: radial-gradient(circle, #c37d28 20%, #c36507 80%) !important; /* Change to a red gradient */
+    animation: bounce 1s infinite; /* Infinite bounce animation */
+}
+
+/* Show the badge when active */
+.notifications-button .badge.active {
+    display: block;
+}
+
+/* The badge */
+.notifications-button .badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    display: none;
+    text-align: center;
+    line-height: 18px;
+}
+
+/* Keyframes for the bounce effect */
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+
+
+/* ERROR POPUP */
+
+.error-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 55%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+    scale: 200%;
+}
+
+.error-popup-content {
+    background-color: #f12d2d;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    display: inline-block;
+    max-width: 80vw;
+}
+
+.error-popup.show {
+    opacity: 1;
+    bottom: 40px;
+}
+
+.error-popup.fade-out {
+    opacity: 0 !important;
+    bottom: 80px !important;
+}
+
+
+/* succ POPUP */
+
+.succ-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+}
+
+.succ-popup-content {
+    background-color: #139b30;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    display: inline-block;
+    max-width: 80vw;
+}
+
+.succ-popup.show {
+    opacity: 1;
+    bottom: 40px;
+}
+
+.succ-popup.fade-out {
+    opacity: 0 !important;
+    bottom: 80px !important;
+}

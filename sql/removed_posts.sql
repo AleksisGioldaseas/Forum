@@ -1,0 +1,12 @@
+CREATE TABLE RemovedPosts (
+    -- Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PostId INTEGER NOT NULL PRIMARY KEY,
+    ModeratorId INTEGER NOT NULL,
+    Cause TEXT NOT NULL,
+    Created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (PostId) REFERENCES Post(Id) ON DELETE CASCADE,
+    FOREIGN KEY (ModeratorId) REFERENCES User(Id) ON DELETE CASCADE,
+    UNIQUE (PostID, ModeratorId)
+);
+
+CREATE INDEX idx_removed_posts_moderator ON RemovedPosts(ModeratorId);

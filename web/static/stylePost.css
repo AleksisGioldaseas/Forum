@@ -1,0 +1,594 @@
+.layout {
+    display: grid;
+    /* grid-template-columns: 100px 1fr; */
+    gap: 40px;
+    width: 80%;
+    margin: auto;
+    margin-top: 100px; /* Moves the whole layout down */
+    margin-left: 200px;
+}
+
+
+.target-container {
+    
+    align-items: center;
+    background: #f57070;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 2px 5px rgba(238, 3, 3, 0.747);
+    
+}
+
+.reaction-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 100px;
+    margin-left: 20px; /* Move reaction box slightly to the right */
+}
+
+.reaction-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    width: 80px;
+}
+
+.like-button, .dislike-button {
+    background: none;
+    border: none;
+    /* cursor: pointer; */
+    font-size: 24px;
+    
+}
+
+.like-button.active {
+    color: green;
+}
+
+.dislike-button.active {
+    color: red;
+}
+
+.score-display {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.post-comments-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.comment-border {
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.post-container2 {
+    width: 100%;
+    width: 1300px;  
+    /* min-height: 250px; Ensures all posts have the same height */
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden; /* Prevents content from overflowing */
+    text-overflow: ellipsis; /* Adds '...' for overflowing text */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.post-container {
+    max-width:80%;
+    width: 100%;
+     transform: translateX(-5%);
+    /* min-height: 250px; Ensures all posts have the same height */
+    padding: 20px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 10px;
+    overflow: hidden; /* Prevents content from overflowing */
+    text-overflow: ellipsis; /* Adds '...' for overflowing text */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.comments-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/* import /*
+
+/* Global Box Sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EFE4D2;
+}
+
+
+
+/* Content Container */
+#content-container {
+    position: relative;
+    transition: filter 0.3s ease;
+}
+
+/* Background blur effect */
+#content-container.blurred {
+    filter: blur(5px);
+}
+
+
+header {
+    background: #954C2E;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    display: flex;
+    border-bottom: 2px solid #000000; /* Add width and style */
+    /* justify-content: center;
+    align-items: center; */
+}header {
+    background: #954C2E;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    display: flex;
+    border-bottom: 2px solid #000000; /* Add width and style */
+    /* justify-content: center;
+    align-items: center; */
+}
+
+/* Adjusted search bar placement */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-btn {
+    background-color: #28a745;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-btn {
+  display: inline-block;
+    background-color: #28a745;
+    padding: 10px 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+  border: none;
+  font-family: sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.search-btn:hover {
+    background-color: #218838;
+}
+
+/* Left Block */
+.left-block {
+    position: relative;
+}
+
+/* Large left-side sticky note */
+.large-left-tab {
+    position: fixed;
+    left: 10px;
+    top: 20%;
+    width: 250px;
+    height: 400px;
+    background-color: #fff1a8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+/* Right Block */
+.right-block {
+    position: relative;
+}
+
+/* Sticky Notes */
+/* Sticky Notes */
+.sticky-note {
+    position: fixed;
+    right: 10px;
+    width: 200px;
+    background-color: #a1aab3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #000000; /* Add width and style */
+
+}
+
+
+/* Sticky note for create post button */
+.create-post-note {
+    top: 55%;
+}
+
+/* Centered Posts */
+.middle-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    margin: auto;
+}
+
+/* Post Styling */
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+/* Set the post-box to have a consistent width */
+.post-box, .like-dislike-container {
+    width: 100%; /* Ensures it fills available space */
+    max-width: 600px; /* Keeps it at a max width */
+    background-color: white;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login-note { top: 25%; }
+.register-note { top: 40%; }
+.post-note { top: 55%; }
+
+
+/* testing */
+
+/* Ensure post + buttons are in one row */
+.post-wrapper {
+    display: flex;
+    align-items: flex-start; /* Keeps items aligned */
+    gap: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    width: 100%; /* Ensure it's the full width of the parent */
+}
+
+/* Adjusted layout for like/dislike container */
+.like-dislike-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 30px; /* Ensures it stays aligned with the post title */
+    width: 70px; /* Fixed width for button container */
+    margin-right: 10px; /* Prevents button container from being misaligned */
+}
+
+
+/* Ensures proper alignment of content inside .post-box */
+.post-details {
+    margin-top: 10px;
+}
+
+
+
+.post-vote, .com-vote-down, .com-vote-up {
+    /* background: none; */
+    /* background-color: #f0f0f0; */
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.com-vote-down, .com-vote-up {
+      font-size: 24px;
+}
+
+ /* .post-vote:hover, .com-vote-down:hover, .com-vote-up:hover {
+      background-color: rgb(218, 218, 218);
+} */
+
+
+.post-vote {
+      font-size: 30px;
+}
+
+
+.like-button i {
+    color: gray;
+}
+
+.like-button.active i {
+    color: rgb(8, 209, 45); /* When liked */
+}
+
+.dislike-button i {
+    color: gray;
+}
+
+.dislike-button.active i {
+    color: red; /* When disliked */
+}
+
+/* .like-button.active:hover, .dislike-button.active:hover {
+    background-color: rgb(204, 190, 190);
+} */
+
+/* .like-button:hover {
+    background-color: #a0e3a0;
+}
+
+.dislike-button:hover {
+    background-color: #e3a0a0;
+} */
+
+/* Styling for like/dislike counts above and below buttons */
+/* .like-count, .dislike-count { */
+    /* visibility: hidden; Or you can use display: none; */
+    /* font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px; Space between button and count */
+/* } */
+
+/* Tooltip container */
+.score-display {
+    position: relative;
+    display: inline-block;
+    cursor: pointer; /* Change mouse to pointer on hover */
+}
+
+/* Tooltip text */
+.score-display .tooltip {
+    visibility: hidden;
+    width: 150px; /* Adjust width based on your content */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 50%; /* Position above the score */
+    right: 100%; /* Position the tooltip to the left of the score */
+    margin-right: 12px; /* Adjust space between the score and tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none; /* Prevent the tooltip from blocking the buttons */
+}
+
+/* Show the tooltip on hover */
+.score-display:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Default background color for positive score */
+.score-display {
+    display: inline-block;
+    background-color: #4CAF50;  /* Green for positive */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    /* margin-right: 10px;  */
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+/* Negative score background color */
+.score-display.negative {
+    background-color: #f44336;  /* Red for negative */
+}
+
+/* Zero score background color */
+.score-display.zero {
+    background-color: #9e9e9e;  /* Grey for zero */
+}
+
+
+
+
+
+/* ----------------------- comment buttons */
+.comment-wrapper {
+    display: flex;
+    align-items: flex-start; /* ensures left and right align to top of content */
+    margin-bottom: 15px;
+    padding: 10px 10px;
+    width: 100%;
+}
+.reaction-panel {
+    display: flex;
+    flex-direction: row; /* horizontal layout */
+    align-items: center;
+    gap: 8px; /* space between buttons and count */
+    margin-right: 10px;
+}
+
+.like-btn, .dislike-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.like-count {
+    margin: 5px 0;
+}
+
+.comment-body {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    flex: 1;
+    margin-left: 5px;
+}
+
+.comment-actions {
+    margin-top: 5px;
+}
+
+#comments-section {
+    scroll-margin-top: 90px; /* adjust this based on your header height */
+}
+
+.comment-actions button {
+    margin-right: 5px;
+    font-size: 12px;
+    padding: 3px 6px;
+    cursor: pointer;
+}
+.comment-body {
+    flex: 1;
+    margin: 0;
+    padding: 10px;
+}
+.reaction-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    margin-right: 10px;
+    padding-top: 2px; /* optional fine-tuning */
+}
+
+.comment-body p {
+    margin: 0; /* prevents extra top spacing */
+}
+
+/* comments count container and butt */
+
+.comments-count {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* More space between icon and count */
+    background-color: #f2f2f2;
+    border: 1px solid #aaa; /* Thicker, more visible border */
+    border-radius: 10px; /* Slightly more rounded */
+    font-weight: 600;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-top: 22px;
+    padding: 10px 12px;         /* Bigger internal space */
+    min-width: 50px;           /* Force larger width if needed */
+    min-height: 40px;           /* Force larger height */
+    font-size: 24px;            /* Bigger text and icon size */
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.comments-count:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.nav-comments-button {
+
+    font-size: 24px;
+    color: #555;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-comments-button i {
+    pointer-events: none;
+}
+
+.comment-count-display {
+    font-size: 18px;
+    color: #333;
+    min-width: 24px;
+    text-align: center;
+}
+
+
+.add-remove-categories {
+    top: 65%
+}
+
+
+.post-image {
+    max-width: 1100px;
+    max-height: 1100px;
+}
+
+.vote-comment-wrapper {
+    transform: translateX(-90%);
+}

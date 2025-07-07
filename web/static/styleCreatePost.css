@@ -1,0 +1,31 @@
+  .custom-file-upload {
+    display: inline-block;
+    margin: 10px 0px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #fff1a8; 
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: lighter;
+  }
+  .send-post-btn {
+    display: inline-block;
+    margin: 10px 0px;
+    padding: 10px 10px;
+    cursor: pointer;
+    background-color: #fff1a8; 
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    /* font-weight:bold; */
+  }
+
+  #postImage {
+    display: none;
+  }
+
+  .post-container {
+    max-width:80%;
+        transform: translateX(-9%);
+  }

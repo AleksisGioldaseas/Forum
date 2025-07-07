@@ -1,0 +1,292 @@
+{
+    "database_configuration": {
+        "path": [
+            "data",
+            "forum.db"
+        ],
+        "wal": {
+            "auto_truncate": true,
+            "truncate_interval": "5m",
+            "cache_size": "10000",
+            "synchronous": "NORMAL"
+        },
+        "use_cache": true,
+        "cache_setup": {
+            "users_cache_limit": 1000,
+            "posts_cache_limit": 500,
+            "categories_cache_limit": 100
+        },
+        "clean_up_sessions": "10m",
+        "ranking_cfg": {
+            "default_rank_score": 300.0,
+            "like_score": 100.0,
+            "dislike_score": 90.0,
+            "time_penalty": 1.0,
+            "halving_hour_interval": 5.0,
+            "cutoff_time": "48h",
+            "interval": "10m"
+        },
+        "limits": {
+            "rows_limit": 1000,
+            "max_username": 25,
+            "min_username": 4,
+            "max_pass": 40,
+            "min_pass": 7,
+            "max_bio": 1000,
+            "max_title": 300,
+            "min_title": 5,
+            "max_comment_body": 3000,
+            "max_post_body": 7000,
+            "max_report_body": 500,
+            "min_body": 1,
+            "max_categories": 5
+        },
+        "ban_routine_interval": "1h",
+        "system_images": {
+            "default_pfp.jpg": {}
+        }
+    },
+    "server": {
+        "Addr": "localhost:8080"
+    },
+    "oauth": {
+        "google": {
+            "client_id": "[REDACTED]",
+            "client_secret": "[REDACTED]",
+            "scopes": [
+                "openid",
+                "https://www.googleapis.com/auth/userinfo.email",
+                "https://www.googleapis.com/auth/userinfo.profile"
+            ],
+            "auth_url": "https://accounts.google.com/o/oauth2/auth",
+            "token_url": "https://oauth2.googleapis.com/token",
+            "base_redirect_uri": "localhost:8080/auth/google/callback"
+        },
+        "github": {
+            "client_id": "[REDACTED]",
+            "client_secret": "[REDACTED]",
+            "scopes": ["user:email"],
+            "auth_url": "https://github.com/login/oauth/authorize",
+            "token_url": "https://github.com/login/oauth/access_token",
+            "base_redirect_uri": "localhost:8080/auth/github/callback"
+        }
+    },
+    "certifications": {
+        "use_https": true,
+        "file": [
+            "certs",
+            "cert.pem"
+        ],
+        "key": [
+            "certs",
+            "key.pem"
+        ]
+    },
+    "handlers": {
+        "image": {
+            "max_size": "20MB",
+            "file_types": [
+                "image/jpeg",
+                "image/png",
+                "image/gif"
+            ],
+            "path_prefix": [
+                "data",
+                "images"
+            ]
+        },
+        "max_post_size": "21MB",
+        "xor_key": "vagelisalexfanisjet",
+        "cookie_expiration_hours": "24h",
+        "rate_limits": {
+            "/image/": {
+                "rate_limit_count": 40,
+                "rate_limit_second_interval": 20.0
+            },
+            "universal": {
+                "rate_limit_count": 40,
+                "rate_limit_second_interval": 2.0
+            },
+            "/": {
+                "rate_limit_count": 20,
+                "rate_limit_second_interval": 20.0
+            },
+            "/profile/": {
+                "rate_limit_count": 20,
+                "rate_limit_second_interval": 20.0
+            },
+            "/post/": {
+                "rate_limit_count": 20,
+                "rate_limit_second_interval": 20.0
+            },
+            "/postform": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/notificationfeed": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 20.0
+            },
+            "/superreportform": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/superreport/": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/superreports": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/removedposts": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/removedcomments": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/login": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 30.0
+            },
+            "/logout": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 30.0
+            },
+            "/logoutall": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 30.0
+            },
+            "/signup": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 30.0
+            },
+            "/auth/google": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 25.0
+            },
+            "/auth/google/callback": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 25.0
+            },
+            "/auth/github": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 25.0
+            },
+            "/auth/github/callback": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 25.0
+            },
+            "/createpost": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 60.0
+            },
+            "/createcomment": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 20.0
+            },
+            "/createsuperreport": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/postedit": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/commentedit": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/profilepic": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 2000.0
+            },
+            "/postdelete": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 20.0
+            },
+            "/commentdelete": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 20.0
+            },
+            "/postremove": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/commentremove": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/postapprove": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/commentapprove": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/votepost": {
+                "rate_limit_count": 15,
+                "rate_limit_second_interval": 20.0
+            },
+            "/updatebio": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 20.0
+            },
+            "/votecomment": {
+                "rate_limit_count": 15,
+                "rate_limit_second_interval": 20.0
+            },
+            "/postreport": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/commentreport": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/modrequest": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/postlist": {
+                "rate_limit_count": 20,
+                "rate_limit_second_interval": 20.0
+            },
+            "/commentlist": {
+                "rate_limit_count": 20,
+                "rate_limit_second_interval": 20.0
+            },
+            "/notificationlist": {
+                "rate_limit_count": 20,
+                "rate_limit_second_interval": 20.0
+            },
+            "/ssenotifications": {
+                "rate_limit_count": 10,
+                "rate_limit_second_interval": 20.0
+            },
+            "/notificationseen": {
+                "rate_limit_count": 5,
+                "rate_limit_second_interval": 20.0
+            },
+            "/demotemoderator": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+            "/promoteuser": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+                "/addcategory": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            },
+                "/removecategory": {
+                "rate_limit_count": 100,
+                "rate_limit_second_interval": 20.0
+            }
+        }
+    }
+}

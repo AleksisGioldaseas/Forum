@@ -1,0 +1,23 @@
+# macOs
+.DS_Store
+
+# debug files
+.vscode
+*.bin
+__debug_bin*
+
+# databases
+*.db
+*.db-shm
+*.db-wal
+persistence/data/images/
+persistence/data/testdata/
+
+# notes
+persistence/notes.txt
+
+#SSL key
+certs/
+
+#images
+data/images/*

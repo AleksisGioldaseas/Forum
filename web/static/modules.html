@@ -1,0 +1,293 @@
+<!-- EVERYTHING YOU PUT IN HERE WILL BE PLACED IN THE HEADER OF EVERY SINGLE PAGE, AND SHOULD BE ACCESSIBLE FROM ANY JS SCRIPT -->
+<!-- GO TEMPLATES ARE SUPPORTED IN HERE TOO -->
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+<!-- HEADER MODULE -->
+<header id="header-module">
+    <!-- SEARCHBAR -->
+    <a href="/" id="home-btn" class="search-btn">Home</a>
+
+
+     <!-- <a href="/" class="search-btn" style="margin-left: 20px;">Home</a> -->
+
+
+    <div style="margin-left: 36%; transform: translateY(-10px);"></div>
+
+    <!-- <div class="search-bar"></div> -->
+    <input class="search-bar" id="search-query" type="text" style="margin-left: 10px;" placeholder="Search post titles">
+    <button id="search-button" class="search-btn">Search</button>
+    </div>
+</header>
+
+
+<!-- RIGHT BLOCK -->
+<div class="right-block" id="right-block">
+            <script>
+                const username = "{{.ActiveUsername}}";
+                let profilePicUrl = "/image/{{.ActiveProfilePic}}";
+                if (profilePicUrl.includes("http")){
+                    profilePicUrl = profilePicUrl.substring(7); // Similar to slice
+                }
+                
+            </script>
+    {{if .IsLoggedIn}}
+    <div class="sticky-note buttons-note" id="sticky-note buttons-note">
+        
+        <a href="/notificationfeed"> <!-- Make it a link to the notifications page -->
+            <button id="notifications-button"
+                class="notifications-button {{if .NotificationAlert}}notification-active{{end}}">
+                <i class="fa-solid fa-bell"></i>
+                <span id="notification-badge" class="badge {{if .NotificationAlert}}active{{end}}">
+                    {{if .NotificationAlert}}{{.NotificationCount}}{{end}}
+                </span>
+            </button>
+        </a>
+        <!-- <button class="darkmode-button"><i class="fa-solid fa-moon"></i></button>
+        <button class="settings-button"><i class="fa-solid fa-gear"></i></button> -->
+        
+        <!-- <button class="darkmode-button"><i class="fa-solid fa-moon"></i></button> -->
+        
+    </div>
+    {{end}}
+    
+
+    <div class="sticky-note login-note" id="sticky-note login-note">
+        {{if .IsLoggedIn}}
+        <!-- If logged in, show the logged-in user info -->
+        <p class="logged-in">Logged in as '{{.ActiveUsername}}'</p>
+        {{else}}
+        <!-- If not logged in, show the Log In button -->
+        <button id="auth-btn" class="login-btn">Log In</button>
+        {{end}}
+    </div>
+    <div class="sticky-note register-note">
+        {{if .IsLoggedIn}}
+        <!-- If logged in, show the Log Out button -->
+        <button id="sendButtonLogout">Log Out</button>
+        <button id="sendButtonLogoutAllElse">Log Out From All Else</button>
+        <!-- <div id="logoutResponse" class="response"></div> -->
+        {{else}}
+        <!-- If not logged in, show the Register button -->
+        <button id="open-register">Register</button>
+        {{end}}
+    </div>
+    <div class="sticky-note create-post-note {{if not .IsLoggedIn}}hidden{{end}}">
+        <a href="/postform"><button class="create-post-btn">Create Post</button></a>
+    </div>
+            {{ if gt .ActiveUserRole 1 }}
+    <div class="sticky-note add-remove-categories">
+        <a href="/removedposts"><button class="post-btn">Removed Posts</button></a>
+        <a href="/removedcomments"><button class="post-btn">Removed Comments</button></a>
+        <a href="/reportedposts"><button class="post-btn">Reported Posts</button></a>
+        <a href="/reportedcomments"><button class="post-btn">Reported Comments</button></a>
+           {{ if gt .ActiveUserRole 2 }}
+            <a href="/superreports"><button class="post-btn">Super Reports</button></a>
+             <a href="/editcategories"><button class="post-btn">Edit Categories</button></a>   
+                {{ end }}
+    </div>
+       {{ end }}
+</div>
+
+
+<!-- generic error popup -->
+<template id="error-popup-template">
+    <div class="error-popup">
+        <div class="error-popup-content">
+            <span class="error-popup-text"></span>
+        </div>
+    </div>
+</template>
+
+<template id="succ-popup-template">
+    <div class="succ-popup">
+        <div class="succ-popup-content">
+            <span class="succ-popup-text"></span>
+        </div>
+    </div>
+</template>
+
+
+<!-- MODALS -->
+<div id="modals-module">
+    <div id="modal-backdrop" class="modal-backdrop"></div>
+    <!-- Registration Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+
+            <!-- Title -->
+            <h2 style="color: black; text-align: center;">Create a new account</h2>
+            <p style="color: grey; text-align: center;">Enter your details to register</p>
+
+            <!-- Separator -->
+            <hr>
+
+            <!-- Username Field -->
+            <label for="registerUsername">Username</label>
+            <input type="text" id="registerUsername" placeholder="Username" value="exampleUser">
+
+            <!-- Email Field -->
+            <label for="registerEmail">Email</label>
+            <input type="email" id="registerEmail" placeholder="Email" value="examplemaial@whatever.gr">
+
+            <!-- Password Fields -->
+            <label for="registerPassword">Password</label>
+            <div class="password-container">
+                <input type="password" id="registerPassword" placeholder="Password" value="examplePassword$45">
+                <span class="toggle-password" onclick="togglePassword('registerPassword')">👁️</span>
+            </div>
+
+            <label for="registerPasswordRepeat">Confirm Password</label>
+            <div class="password-container">
+                <input type="password" id="registerPasswordRepeat" placeholder="Repeat Password"
+                    value="examplePassword$45">
+                <span class="toggle-password" onclick="togglePassword('registerPasswordRepeat')">👁️</span>
+            </div>
+
+            <!-- Password Requirements -->
+            <p style="color: grey; font-size: 12px; margin-top: 5px;">
+                Must contain 1 uppercase letter, 1 lowercase letter, 1 number, 1 special character, and min 7
+                characters.
+            </p>
+
+            <!-- Register Button -->
+            <button id="sendButtonRegister">Register</button>
+
+            <!-- Debugging Response
+            <div id="registerResponse" class="response"></div> -->
+
+            <!-- Terms and Conditions -->
+            <p style="font-size: 12px; text-align: center;">
+                By clicking Register, you agree to accept our
+                <a href="#" id="terms-link" style="color: blue; cursor: pointer;">Terms and Conditions</a>.
+            </p>
+
+            <!-- Separator -->
+            <hr>
+
+            <!-- Already a member? -->
+            <p style="text-align: center;">
+                Already a member?
+                <span id="sign-in-link" style="color: blue; cursor: pointer;">Sign In</span>
+            </p>
+        </div>
+    </div>
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-login">&times;</span>
+            <h2>Sign In</h2>
+
+            <!-- Separator Line with "with" in the middle -->
+            <div class="separator"><span>with</span></div>
+
+            <!-- Third-party login buttons -->
+            <div class="oauth-providers">
+                <a href="/auth/google" class="oauth-btn google-login">
+                    <img src="/images/google-logo.png" alt="Google logo" width="20" height="20">
+                    Sign in with Google
+                </a>
+                <a href="/auth/github" class="oauth-btn github-login">
+                    <img src="/images/github-logo.png" alt="GitHub logo" width="20" height="20">
+                    Sign in with GitHub
+                </a>
+            </div>
+
+            <p class="or-text">or</p>
+
+            <input type="text" id="loginUsername" placeholder="Username" value="exampleUser">
+            <input type="password" id="loginPassword" placeholder="Password" value="examplePassword$45">
+            <br>
+            <button id="sendButtonLogin">Sign In</button>
+            <div id="loginResponse" class="response"></div>
+            <!-- Bottom separator -->
+            <div class="separator"></div>
+
+            <div class="bottom-links">
+                <span class="signup-link" style="cursor: pointer; color: blue; text-decoration: underline;">New here?
+                    Sign up</span>
+                <a href="/forgot-password" class="forgot-password-link">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Active user reference elements
+<div id="active-user-role" data-value="0" style="display: none;"></div>
+<div id="active-user-name" data-value="" style="display: none;"></div> -->
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const signUpLink = document.querySelector(".signup-link");
+        const registerButton = document.getElementById("open-register");
+        const loginModal = document.getElementById("login-modal"); // Get the login modal
+        const registerModal = document.getElementById("register-modal"); // Get the register modal
+
+        if (signUpLink && registerButton) {
+            signUpLink.addEventListener("click", function (event) {
+                event.preventDefault(); // Stop default navigation behavior
+                registerButton.dispatchEvent(new Event("click", { bubbles: true }));
+
+                // Close the login modal
+                if (loginModal) {
+                    loginModal.style.display = "none";
+                }
+            });
+        }
+
+        // Password Visibility Toggle
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+
+        // Attach password toggle to each eye button
+        document.querySelectorAll(".toggle-password").forEach(button => {
+            button.addEventListener("click", function () {
+                const inputId = this.previousElementSibling.id;
+                togglePassword(inputId);
+            });
+        });
+
+        // Redirect Sign In link to open Login Modal
+        const signInLink = document.getElementById("sign-in-link");
+
+        if (signInLink && loginModal && registerModal) {
+            signInLink.addEventListener("click", function () {
+                registerModal.style.display = "none";
+                loginModal.style.display = "block";
+            });
+        }
+    });
+
+    // Add link and profile pic on log in
+    document.addEventListener("DOMContentLoaded", function() {
+    const profileContainer = document.getElementById("sticky-note buttons-note");
+    if (profileContainer && username && profilePicUrl) {
+        const link = document.createElement("a");
+        link.href = `/profile/${username}`;
+
+        const img = document.createElement("img");
+        img.src = profilePicUrl;
+        img.alt = `${username}'s profile picture`;
+        img.style.width = "40px";
+        img.style.height = "40px";
+        img.style.borderRadius = "50%";
+        img.style.verticalAlign = "middle";
+        img.style.marginRight = "8px";
+
+        link.appendChild(img);
+        profileContainer.appendChild(link);
+    }
+    });
+
+</script>
+

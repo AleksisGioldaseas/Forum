@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Home</title>
+    <link rel="stylesheet" href="/static/styleHome.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+</head>
+
+<body>
+
+    <!-- Store the IsLoggedIn value in a hidden element or data attribute -->
+    <div id="auth-status" data-logged-in="{{ .IsLoggedIn }}"></div>
+
+    <!-- Placeholder for Header -->
+    <div id="header-container"></div>
+
+
+    <!-- Placeholder for Modals -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+
+        <div class="layout">
+  
+
+            <!-- Container for the currently selected categories -->
+            <div id="selected-categories-container"></div>
+
+
+            <div class="left-block">
+                <!-- Sidebar Button -->
+                <button id="sidebar-toggle-btn" class="sidebar-toggle-btn">
+                    Categories
+                </button>
+            </div>
+
+            <!-- Sliding Panel with Categories -->
+
+
+
+            <div class="sort-filter-controls">
+
+                {{ if .IsLoggedIn }}
+                <div class="filter-group">
+                    <div class="button-group" id="filtering">
+                        <button data-value="all" class="active">All</button>
+                        <button data-value="my-posts">My Posts</button>
+                        <button data-value="liked">Liked</button>
+                    </div>
+                </div>
+                {{ end }}
+
+                <div class="sort-group">
+                    <div class="button-group" id="sorting">
+                        <button data-value="hot" class="active">Hot</button>
+                        <button data-value="new">New</button>
+                        <button data-value="top">Top</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="category-panel" class="category-panel">
+                <div id="category-options" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    {{range .Categories}}
+                    <div class="category-option" data-category="{{.}}">{{.}}</div>
+                    {{end}}
+                </div>
+            </div>
+
+            <!-- Middle Section -->
+            <div class="middle-section">
+                <div class="post-section">
+                    <div id="posts-container" class="posts-container"></div>
+
+                </div>
+            </div>
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+        </div>
+    </div>
+    </div>
+    <script src="/js/elementConstructor.js"></script>
+    <script src="/js/loadComponent.js" defer></script>
+    <script src="/js/sendJsonReq.js" defer></script>
+    <script src="/js/SseNotification.js" defer></script>
+    <script src="/js/IndexHomeScript.js" defer></script>
+</body>
+
+
+</html>
+
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+        try {
+            const raw = `{{ .JsonPosts }}`;
+            const parsed = JSON.parse(raw);
+            allPosts = parsed.posts || [];
+            refreshPosts(allPosts)
+
+
+
+        } catch (err) {
+            console.error("Error parsing posts JSON", err);
+        }
+    });
+</script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Post</title>
+    <!-- <link rel="stylesheet" href="/static/stylePost.css"> -->
+    <link rel="stylesheet" href="/static/styleHome.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+    <link rel="stylesheet" href="/static/styleCreatePost.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+</head>
+
+
+
+<body>
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- Placeholder for Header -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+
+
+        <div class="layout">
+
+            <!-- Middle Section -->
+            <div class="post-container">
+                <form id="createPostForm" enctype="multipart/form-data" method="POST">
+                <p>Title:</p>
+                <input id="postTitle" style="width: 600px;" type="text">
+                <div id="category-options" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    {{range .Categories}}
+                        <div class="category-option" data-category="{{.}}">{{.}}</div>
+                    {{end}}
+                </div>
+                <input id="postCategories" style="width: 400px;" type="text" readonly placeholder="Select categories"/>
+                <p>Body:</p>
+                <textarea id="postBody" cols="40" rows="5" style="width: 100%; height: 300px; display:block;"
+                    type="textarea"></textarea>
+
+
+                <label for="postImage" class="custom-file-upload">Upload Image</label>
+                <input type="file" id="postImage" name="image" accept="image/*">
+                <small>Max file size: 20MB</small><br> <!-- vag: Adding warning here -->
+
+                <button id="sendButtonCreatePost" class="send-post-btn">Submit Post</button>
+                
+                <!-- <p id="createPostResponse">response</p> -->
+                <div id="createPostResponse" class="response"></div>
+                </form>
+            </div>
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+        </div>
+    </div>
+
+    <script src="/js/loadComponent.js"></script>
+    <script src="/js/sendJsonReq.js"></script>
+    <script src="/js/SseNotification.js" defer></script>
+</body>
+
+</html>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const categoryOptions = document.querySelectorAll('.category-option');
+    const input = document.getElementById('postCategories');
+
+    const selectedCategories = new Set();
+
+    categoryOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const category = option.dataset.category;
+
+            if (selectedCategories.has(category)) {
+                selectedCategories.delete(category);
+                option.classList.remove('selected');
+            } else {
+                if (selectedCategories.size >= 5) {
+                    showErrorPopup("Only up to 5 categories can be selected");
+                    return;
+                }
+                selectedCategories.add(category);
+                option.classList.add('selected');
+            }
+
+            input.value = Array.from(selectedCategories).join(', ');
+        });
+    });
+});
+</script>

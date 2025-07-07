@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Categories</title>
+    <!-- <link rel="stylesheet" href="/static/stylePost.css"> -->
+    <link rel="stylesheet" href="/static/styleHome.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+    <link rel="stylesheet" href="/static/styleCreatePost.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+</head>
+
+
+
+<body>
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- Placeholder for Header -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+
+
+        <div class="layout">
+
+            <!-- Middle Section -->
+                <div id="category-options" style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    {{range .Categories}}
+                        <div class="category-option" data-category="{{.}}">{{.}}</div>
+                    {{end}}
+                </div>
+             
+                  </div>
+                        <!-- New Input Boxes -->
+
+        <div style="display: block;"></div>
+        <input type="text" id="add-category-box" placeholder="Enter category to add">
+        <button id="addCategoryButton" class="category-btn">Add Category</button>
+
+        <input type="text" id="remove-category-box" placeholder="Enter category to remove">
+        <button id="removeCategoryButton" class="category-btn">Remove Category</button>
+
+
+                
+                <!-- <p id="createPostResponse">response</p> -->
+                <div id="createPostResponse" class="response"></div>
+            </div>
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+
+    </div>
+
+    <script src="/js/loadComponent.js"></script>
+    <script src="/js/sendJsonReq.js"></script>
+    <script src="/js/SseNotification.js" defer></script>
+</body>
+
+</html>

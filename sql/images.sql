@@ -1,0 +1,4 @@
+CREATE TABLE Images (
+    FileName TEXT PRIMARY KEY,
+    Hide INTEGER CHECK (Hide IN (1, 0)) DEFAULT 0
+);

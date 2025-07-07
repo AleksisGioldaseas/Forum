@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Profile</title>
+    <link rel="stylesheet" href="/static/stylePost.css">
+    <link rel="stylesheet" href="/static/styleHome.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+    <link rel="stylesheet" href="/static/styleProfile.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+
+</head>
+
+<!-- Store JSON in data attributes (hidden divs) -->
+
+<body>
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+
+        <div class="layout">
+
+
+
+            <!-- Middle Section -->
+            <div class="post-container" data-can-edit-profile="{{ eq .User.UserName .ActiveUsername }}">
+
+                <div id="profileImageWrapper" class="upload-wrapper">
+                    <img id="profileImage" class="upload-wrapper" alt="User Profile Picture" />
+                    {{ if eq .User.UserName .ActiveUsername}}
+                        <div class="hover-message">Upload Image</div>
+                    {{ end }}
+                </div>
+
+                <div id="actionButtons" style="display: none;">
+                    <button id="uploadProfilePicButton" style="margin-top: 5px;" class="cnf-btn">Save</button>
+                    <button id="cancelUploadButton" style="margin-top: 5px; background-color: beige;"
+                        class="cnf-btn">Cancel</button>
+                </div>
+
+
+
+                <script>
+                    const profilePic = "{{.User.ProfilePic}}";
+                    if (profilePic && profilePic !== "<nil>" && profilePic !== "null" && profilePic !== "undefined") {
+                        const postImg = document.getElementById("profileImage");
+                        
+                        
+                        if (profilePic.includes("http") == false){
+                            postImg.src = "/image/" + profilePic;
+                        }else{
+                            postImg.src = profilePic;
+                        }
+                        console.log()
+                    } else {
+                        const postImg = document.getElementById("profileImage");
+                        postImg.src = "/image/default_pfp.jpg";
+                    }
+                </script>
+                <h1>
+                    {{ if eq .User.Role 2}}
+                        Mod
+                    {{ end }}
+                    {{ if eq .User.Role 3}}
+                        Admin
+                    {{ end }}
+                    {{.User.UserName}}
+                </h1>
+                {{if eq .User.Banned 1}}
+                {{if gt .ActiveUserRole 1}}
+                    <div style="color:rgb(255, 0, 0)">
+                        Banned by {{.User.BannedBy}} until {{.User.BanExpDate}} for {{.User.BanReason}}
+                    </div>
+                    {{else}}
+                    <div style="color:rgb(255, 0, 0)">
+                        Banned for {{.User.BanReason}}
+                    </div>
+                {{end}}
+                {{end}}
+
+
+                {{ if eq .User.UserName .ActiveUsername}}
+                    {{ if eq .User.Role 1}}
+                        <button id="sendButtonModRequest" style="width: 100px;" class="cnf-btn">Moderator Request</button>
+                    {{ end }}
+                {{ end }}
+
+                {{ if gt .ActiveUserRole 1 }}
+                    {{if eq .User.Role 1}}
+                        {{if eq .User.Banned 0}}
+                            <div id="banButtonWrapper" style="display: inline-block; position: relative;">
+                                <button data-value="{{ .User.UserName }}" id="banButton" style="width: 100px;">Ban User</button>
+                                <div id="confirmCancelWrapper" style="display: none;">
+                                    <button id="confirmBanBtn" disabled style="width: 100px; margin-right: 5px;">Confirm
+                                        Ban</button>
+                                    <button id="cancelBanBtn" style="width: 100px;">Cancel</button>
+                                </div>
+                            </div>
+
+                            <!-- Ban Options Container (initially hidden) -->
+                            <div id="banOptions" style="display: none; margin-left: 15px;margin-top: 5px;">
+                                <p>Ban Duration (In Days):</p>
+                                <button class="ban-option" data-days="1">1</button>
+                                <button class="ban-option" data-days="5">5</button>
+                                <button class="ban-option" data-days="30">30</button>
+                                <button class="ban-option" data-days="0">Permanent</button>
+                                <button class="ban-option" id="customBanBtn" data-days="custom">Custom</button>
+                                <input type="number" id="customBanInput" placeholder="Days" style="width: 60px;" />
+                            </div>
+
+                            <!-- Ban Reason Options (initially hidden) -->
+                            <div id="banReasons" style="display: none; margin-left: 15px;margin-top: 5px; ">
+                                <p>Select Reason:</p>
+                                <br>
+                                <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                                    <button class="ban-reason" data-reason="Spam">Spam</button>
+                                    <button class="ban-reason" data-reason="Harassment">Harassment</button>
+                                    <button class="ban-reason" data-reason="HateSpeech">HateSpeech</button>
+                                    <button class="ban-reason" data-reason="Impersonation">Impersonation</button>
+                                    <button class="ban-reason" data-reason="Trolling">Trolling</button>
+                                    <button class="ban-reason" data-reason="Inappropriate">Inappropriate</button>
+                                    <button class="ban-reason" data-reason="Scam">Scam</button>
+                                    <button class="ban-reason" data-reason="Abuse">Abuse</button>
+                                </div>
+                            </div>
+
+                        {{end}}
+                    {{end}}
+
+                    {{if eq .User.Role 1}}
+                        {{if eq .User.Banned 1}}
+                            <button data-value="{{ .User.UserName }}" id="unbanButton" style="width: 100px; margin-top:10px">Unban
+                                User</button>
+                        {{end}}
+                    {{end}}
+                    {{ if eq .User.Role 1 }}
+                        {{ if eq .ActiveUserRole 3 }}
+                            <br>
+                            <br>
+                            <button data-value="{{ .User.UserName }}" id="promoteUser" style="width: 100px;">Promote to
+                                Moderator</button>
+                        {{ end }}
+                    {{ end }}
+                    {{ if eq .ActiveUserRole 3 }}
+                        {{ if eq .User.Role 2 }}
+                        <button data-value="{{ .User.UserName }}" id="demoteMod" style="width: 100px;">Demote to User</button>
+                        {{ end }}
+                    {{end}}
+                {{ end }}
+
+                {{ if eq .ActiveUserRole 3 }}
+                <a href="/superreportform?user_id={{ .User.ID }}"> <button>Super Report</button> </a>
+                {{ end }}
+
+                <div style="visibility: hidden;" id="ModRequestResponse" class="response"></div>
+
+                <h2>Total Karma:</h2>
+                <p>{{.User.TotalKarma}}</p>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <h2>About:</h2>
+                    {{ if eq .User.UserName .ActiveUsername }}
+                    <button id="updateBioButton" style="width: 100px;" class="cnf-btn">Update Bio</button>
+                    {{ end }}
+                </div>
+                <div id="current-bio" class="current-bio">{{.Bio}}</div>
+                {{ if eq .User.UserName .ActiveUsername}}
+                <!-- <button id="updateBioButton" style="width: 100px;" class="cnf-btn">Update Bio</button> -->
+                <div id="bio_edit_area"></div>
+                {{ end }}
+                <h2>Joined:</h2>
+                <p id="joined-time" data-utc="{{.User.Created}}">{{.User.Created}}</p>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const timeElem = document.getElementById("joined-time");
+                        const utcTime = timeElem.getAttribute("data-utc");
+                        if (!utcTime) return;
+                        const formatted = utcTime ? new Date(utcTime).toLocaleString() : 'Unknown time';
+                        timeElem.textContent = formatted;
+                    });
+                </script>
+                <h2>Activity:</h2>
+                <div id="user-activity"></div>
+                <p id="user-activity"></p>
+                <script src="/js/userActivity.js" defer></script>
+            </div>
+
+
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+        </div>
+    </div>
+
+    <script src="/js/loadComponent.js"></script>
+    <script src="/js/sendJsonReq.js"></script>
+    <script src="/js/SseNotification.js" defer></script>
+</body>
+
+</html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const banButton = document.getElementById("banButton");
+        const confirmCancelWrapper = document.getElementById("confirmCancelWrapper");
+        const banOptions = document.getElementById("banOptions");
+        const banReasons = document.getElementById("banReasons");
+        const customInput = document.getElementById("customBanInput");
+        const confirmBanBtn = document.getElementById("confirmBanBtn");
+        const cancelBanBtn = document.getElementById("cancelBanBtn");
+
+        // Only proceed if the main ban elements exist (banButton and banOptions at least)
+        if (!banButton || !confirmCancelWrapper || !banOptions || !banReasons || !customInput || !confirmBanBtn || !cancelBanBtn) {
+            // One or more elements are missing, don't attach event listeners
+            return;
+        }
+
+
+        let selectedDays = null;
+        let selectedReason = null;
+
+        banButton.addEventListener("click", () => {
+            banButton.style.display = "none";
+            confirmCancelWrapper.style.display = "inline-block";
+            banOptions.style.display = "inline-block";
+            banReasons.style.display = "block";
+
+            // Disable and clear custom input on menu open
+            customInput.disabled = true;
+            customInput.value = "";
+            selectedDays = null;
+            updateConfirmButtonState();
+        });
+
+        document.querySelectorAll(".ban-option").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".ban-option").forEach(b => b.classList.remove("selected"));
+                button.classList.add("selected");
+
+
+                const days = button.dataset.days;
+
+                if (days === "custom") {
+                    customInput.disabled = false;
+                    customInput.focus();
+                    selectedDays = null; // Wait for valid input
+                } else {
+                    customInput.disabled = true;
+                    customInput.value = "";
+                    if (days === "0") {
+                        selectedDays = 99999; // Permanent ban
+                    } else {
+                        selectedDays = parseInt(days, 10);
+                    }
+                }
+                updateConfirmButtonState();
+            });
+        });
+
+        customInput.addEventListener("input", () => {
+            if (!customInput.disabled) {
+                const customDays = parseInt(customInput.value, 10);
+                selectedDays = (!isNaN(customDays) && customDays > 0) ? customDays : null;
+                updateConfirmButtonState();
+            }
+        });
+
+        document.querySelectorAll(".ban-reason").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".ban-reason").forEach(b => b.classList.remove("selected"));
+                button.classList.add("selected");
+                selectedReason = button.dataset.reason;
+                updateConfirmButtonState();
+            });
+        });
+
+
+        cancelBanBtn.addEventListener("click", () => {
+            selectedDays = null;
+            selectedReason = null;
+            customInput.value = "";
+            customInput.disabled = true;
+
+            document.querySelectorAll(".ban-option, .ban-reason").forEach(b => b.classList.remove("selected"));
+            updateConfirmButtonState();
+
+            confirmCancelWrapper.style.display = "none";
+            banOptions.style.display = "none";
+            banReasons.style.display = "none";
+            banButton.style.display = "inline-block";
+        });
+
+        function updateConfirmButtonState() {
+            confirmBanBtn.disabled = !(selectedDays && selectedReason);
+        }
+    });
+</script>

@@ -1,0 +1,88 @@
+h1 {
+  text-transform: capitalize;
+}
+
+.upload-wrapper {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    cursor: pointer;
+}
+
+.upload-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hover-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.post-vote, .com-vote-down, .com-vote-up {
+    /* background: none; */
+    /* background-color: #f0f0f0; */
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.upload-wrapper:hover .hover-message {
+    opacity: 1;
+}
+
+.user-activity {
+  margin-top: 0;
+}
+
+.activity {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* .target-text {
+  font-style: italic;
+} */
+.current-bio {
+    width: 700px;
+    padding: 10px;
+    margin: 10px 0;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.timestamp {
+  color: gray;
+  font-size: 0.8em;
+}
+
+.selected {
+  background-color: #007BFF;
+  color: white;
+}
+
+#banButtonWrapper {
+  display: inline-block; /* keep visible */
+  min-height: 40px; /* or something that fits your buttons */
+}

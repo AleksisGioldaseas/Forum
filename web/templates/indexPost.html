@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Forum - Post View</title>
+    <link rel="stylesheet" href="/static/stylePost.css">
+    <link rel="stylesheet" href="/static/styleModals.css">
+
+    <!-- HIDDEN ELEMENTS -->
+    {{ template "modules.html" . }}
+
+    <div id="active-user-role" data-value='{{.ActiveUserRole}}' style="display: none;"></div>
+    <div id="active-user-name" data-value='{{.ActiveUsername}}' style="display: none;"></div>
+
+    <div id="post-data" data-json='{{.JsonMainPost}}' style="display: none;"></div>
+    <div id="commentPostId" data-post-id='{{.PostId}}' style="display: none;"></div>
+    <div id="comments-data" data-json='{{.JsonComments}}' style="display: none;"></div>
+
+</head>
+
+<!-- Store JSON in data attributes (hidden divs) -->
+
+
+
+
+<body>
+    <!-- Store the IsLoggedIn value in a hidden element or data attribute -->
+    <div id="auth-status" data-logged-in="{{ .IsLoggedIn }}"></div>
+
+
+    <!-- loaded through script -->
+    <div id="header-container"></div>
+
+    <!-- loaded through script -->
+    <div id="modals-container"></div>
+
+    <!-- Hidden ID Element -->
+    <span id="data-post-id" style="display: none;"></span>
+
+    <!-- <div class="post-wrapper"> -->
+
+    <!-- Wrap content inside this container -->
+    <div id="content-container">
+        <div class="layout">
+
+
+
+
+            <!-- MAIN POST & COMMENTS (Grouped Together in One Column) -->
+            <div class="post-comments-container">
+
+
+
+
+
+
+                <!-- COMMENTS SECTION (Now part of the same container) -->
+                <div class="comments-container">
+                    <!-- <hr> -->
+
+                    {{ if eq .ActiveUserRole 0 }}
+
+                    {{ else }}
+                    <h2>Your comment:</h2>
+                    <textarea id="commentBody" cols="10" rows="5"
+                        style="width: 90%; height: 150px; display:block;"></textarea>
+                    <button id="sendButtonCreateComment" class="cnf-btn">Submit Comment</button>
+                    <div id="createCommentResponse" class="response"></div>
+                    {{ end }}
+                    <h2 style="display: inline;">Comments</h2>
+                    <div style="transform: translateY(-10px); display: inline;"> Sort:</div>
+                    <select data-postid="{{.PostId}}" style="display: inline;" name="Comment-Sort" id="comment-sorting">
+                        <option value="old">Old</option>
+                        <option value="new">New</option>
+                        <option value="top">Top</option>
+                    </select>
+                    <div id="comments-section"></div>
+                </div>
+            </div>
+
+
+            <!-- Right Block -->
+            <div id="right-block-container"></div>
+
+        </div>
+    </div>
+
+
+    <script defer src="/js/CommentDelegator.js"></script>
+    <script defer src="/js/elementConstructor.js"></script>
+    <script defer src="/js/ShowPost.js"></script>
+    <script defer src="/js/sendJsonReq.js"></script>
+    <script defer src="/js/loadComponent.js"></script>
+    <script defer src="/js/SseNotification.js" defer></script>
+    <script defer src="/js/IndexPostScript.js" defer></script>
+
+
+    <script>
+
+        // Current URL: https://my-website.com/page_a
+        const urltitle = `/{{.MainPost.Title}}`.split(' ').join('_')
+        if (window.location.href.includes(urltitle) == false) {
+            const nextURL = (window.location.href + urltitle);
+            const nextTitle = 'My new page title';
+            const nextState = { additionalInformation: 'Updated the URL with JS' };
+
+            // This will create a new entry in the browser's history, without reloading
+            window.history.pushState(nextState, nextTitle, nextURL);
+
+            // This will replace the current entry in the browser's history, without reloading
+            window.history.replaceState(nextState, nextTitle, nextURL);
+        }
+
+
+    </script>
+</body>
+
+</html>

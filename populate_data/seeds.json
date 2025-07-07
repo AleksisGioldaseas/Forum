@@ -1,0 +1,394 @@
+{
+  "categories": [
+    "music",
+    "coding",
+    "lifestyle",
+    "dnd",
+    "anime",
+    "magic the gathering",
+    "pokemon",
+    "path of exile",
+    "tekken",
+    "science",
+    "technology",
+    "politics",
+    "spirituality",
+    "christianity",
+    "mma",
+    "games",
+    "relationships",
+    "zone01",
+    "golang",
+    "javascript",
+    "rust",
+    "c++",
+    "programminghumour",
+    "psychotropics",
+    "cats",
+    "dogs",
+    "elephants",
+    "horses",
+    "trees",
+    "weed",
+    "wtf",
+    "pictures",
+    "elden ring",
+    "video games",
+    "vscode",
+    "notepad",
+    "windows",
+    "linux",
+    "sql",
+    "firefox",
+    "illuminati",
+    "movies",
+    "beekeeping",
+    "money",
+    "money1",
+    "money2",
+    "money3",
+    "money4",
+    "money5",
+    "scams",
+    "banter",
+    "maga",
+    "italian",
+    "brainrot"
+  ],
+
+  "users": [
+    {
+      "id": 1,
+      "user_name": "vagelis",
+      "password" : "paidiaanevasaupdate",
+      "profile_pic": "face.png",
+      "bio": "developer",
+      "total_karma": 90
+    },
+    {
+      "id": 2,
+      "user_name": "jim",
+      "password": "earthworm",
+      "profile_pic": "worm.png",
+      "bio": "coder",
+      "total_karma": 100
+    },
+    {
+      "id": 3,
+      "user_name": "jane",
+      "password": "spaceworm",
+      "profile_pic": "default_pfp.jpg",
+      "bio": "Influencer",
+      "total_karma": 30
+    },
+    {
+      "id": 4,
+      "user_name": "alex",
+      "password": "tothemaeinai",
+      "profile_pic": "bear.png",
+      "bio": "Elite Gamer",
+      "total_karma": 9000
+    },
+    {
+      "id": 5,
+      "user_name": "mitsos",
+      "password": "poupasrekaramitro",
+      "profile_pic": "onepunchman.png",
+      "bio": "Casual Gamer",
+      "total_karma": 1
+    },
+    {
+      "id": 6,
+      "user_name": "fanour",
+      "password": "cryptid",
+      "profile_pic": "pepega.png",
+      "bio": "I like Bleech",
+      "total_karma": -1001
+    },
+    {
+      "id": 7,
+      "user_name": "augustine",
+      "password": "necoarccool",
+      "profile_pic": "animeprofilepic.png",
+      "bio": "My tastes in Anime (japanese cartoons for you normies) are objective!!!",
+      "total_karma": 77
+    },
+    {
+      "id": 8,
+      "user_name": "therealdonaldtrump",
+      "password": "123",
+      "profile_pic": "maga.png",
+      "bio": "Make America Great Again",
+      "total_karma": 3
+    },
+    {
+      "id": 9,
+      "user_name": "elonmusk",
+      "password": "210467980237477",
+      "profile_pic": "elon.png",
+      "bio": "Hauk Tuah",
+      "total_karma": 30000000
+    },
+    {
+      "id": 10,
+      "user_name": "peppathepig",
+      "password": "123",
+      "profile_pic": "pigface.png",
+      "bio": "Hello I'm peppa the Pig, and I like fighting games. Placed 2nd EVO 2023, 3rd EVO Japan 2024.",
+      "total_karma": 100
+    },
+    {
+      "id": 11,
+      "user_name": "dog",
+      "password": "woofwoof",
+      "profile_pic": "dog.png",
+      "bio": "woof woof woof woof woof woof woof woof",
+      "total_karma": 9999999
+    },
+    {
+      "id": 12,
+      "user_name": "bee",
+      "password": "ilikehoney123",
+      "profile_pic": "doyoulikejazz.png",
+      "bio": "I'm new to the forum, please go easy on me!",
+      "total_karma": 9999999
+    },
+    {
+      "id": 13,
+      "user_name": "misingno",
+      "password": "wabalabadubdub",
+      "profile_pic": "00101.png",
+      "bio": "wtf",
+      "total_karma": 0
+    },
+    {
+      "id": 14,
+      "user_name": "admin",
+      "password": "admin",
+      "profile_pic": "eyes.png",
+      "bio": "theoneaboveall",
+      "total_karma": 1
+    },
+    {
+      "id": 15,
+      "user_name": "mod",
+      "password": "mod",
+      "profile_pic": "janitor.png",
+      "bio": "I'm just a man, an innocent man.",
+      "total_karma": 3
+    },
+    {
+      "id": 16,
+      "user_name": "CGKALDAN",
+      "password": "mod",
+      "profile_pic": "laril.png",
+      "bio": "Best Magic Player Ever Made By God",
+      "total_karma": 3
+    }
+  ],
+  "posts": [
+    {
+      "user_id": 3,
+      "title": "Post 1",
+      "body": "This is Post 1 by User 1, this is my first post.",
+      "post_img": "",
+      "likes": 5,
+      "dislikes": 2,
+      "rank_score": 10,
+      "categories": ["music", "coding"]
+    },
+    {
+      "user_id": 2,
+      "title": "Post 2",
+      "body": "This is Post 2 by User1, this is a second post. If this post is now allowed let me know and I'll delete it. Sorry.",
+      "likes": 5,
+      "dislikes": 2,
+      "rank_score": 10,
+      "categories": ["music", "coding"]
+    },
+    {
+      "user_id": 2,
+      "title": "Post 3",
+      "body": "This is Post 3 by Jim (earthworm), and I would like to state for the record that Jane is a lil bitch.",
+      "likes": 7,
+      "dislikes": 3,
+      "rank_score": 15,
+      "categories": ["lifestyle", "coding"]
+    },
+    {
+      "user_id": 4,
+      "title": "FANIS = KEKW",
+      "body": "The only one who'd dislike this post is Fanis (L bozo btw)",
+      "likes": 9001,
+      "dislikes": 1,
+      "rank_score": 1000,
+      "categories": ["banter"]
+    },
+    {
+      "user_id": 7,
+      "title": "Anyone wanna play magic after this?",
+      "body": "title",
+      "likes": 0,
+      "dislikes": 0,
+      "rank_score": 300,
+      "categories": ["dnd", "anime", "magic the gathering"]
+    },
+    {
+      "user_id": 11,
+      "title": "Woof woof woof woof woof!",
+      "body": "Woof woof woof woof, woof woof woof. Woof woof woof woof woof woof woof... woof woof woof?",
+      "likes": 99999,
+      "dislikes": 0,
+      "rank_score": 1200,
+      "categories": ["psychotropics", "technology", "dogs"]
+    },
+    {
+      "user_id": 12,
+      "title": "According to all known laws of aviation, there is no way a bee should be able to fly.",
+      "body": "Its wings are too small to get its fat little body off the ground.\nThe bee, of course, flies anyway because bees don't care what humans think is impossible.\nYellow, black. Yellow, black. Yellow, black. Yellow, black.\nOoh, black and yellow!\nLet's shake it up a little.\nBarry! Breakfast is ready!\nComing!\nHang on a second.\nHello?\nBarry?\nAdam?\nCan you believe this is happening?\nI can't.\nI'll pick you up.\nLooking sharp.\nUse the stairs, Your father paid good money for those.\nSorry. I'm excited.\nHere's the graduate.\nWe're very proud of you, son.\nA perfect report card, all B's.\nVery proud.\nMa! I got a thing going here.\nYou got lint on your fuzz.\nOw! That's me!\nWave to us! We'll be in row 118,000.\nBye!\nBarry, I told you, stop flying in the house!\nHey, Adam.\nHey, Barry.\nIs that fuzz gel?\nA little. Special day, graduation.\nNever thought I'd make it.\nThree days grade school, three days high school.\nThose were awkward.\nThree days college. I'm glad I took a day and hitchhiked around The Hive.\nYou did come back different.\nHi, Barry. Artie, growing a mustache? Looks good.\nHear about Frankie?\nYeah.\nYou going to the funeral?\nNo, I'm not going.\nEverybody knows, sting someone, you die.\nDon't waste it on a squirrel.\nSuch a hothead.\nI guess he could have just gotten out of the way.\nI love this incorporating an amusement park into our day.\nThat's why we don't need vacations.\nBoy, quite a bit of pomp under the circumstances.\nWell, Adam, today we are men.\nWe are!\nBee-men.\nAmen!\nHallelujah!\nStudents, faculty, distinguished bees,\nplease welcome Dean Buzzwell.\nWelcome, New Hive City graduating class of 9:15.\nThat concludes our ceremonies And begins your career at Honex Industries!\nWill we pick our job today?\nI heard it's just orientation.\nHeads up! Here we go.\nKeep your hands and antennas inside the tram at all times.\nWonder what it'll be like?\nA little scary.\nWelcome to Honex, a division of Honesco and a part of the Hexagon Group.\nThis is it! ",
+      "likes": 7121,
+      "dislikes": 120,
+      "rank_score": 1100,
+      "categories": ["beekeeping", "movies", "spirituality"],
+      "post_img": "bee.png"
+    },
+    {
+      "user_id": 8,
+      "title": "BUY MY CRYPTOCOIN BUY MY CRYPTOCOIN",
+      "body": "BUY BUY BUY BUY",
+      "likes": 1,
+      "dislikes": 120,
+      "rank_score": -500,
+      "categories": ["money", "scams", "maga"]
+    },
+    {
+      "user_id": 6,
+      "title": "The Mangoos talk was incredible!",
+      "body": "Attending the talk with the CEO of Magnoos was more than just a professional discussion—it was a glimpse into a world of فرص حقيقية for those ready to take the next step. He spoke about the immense potential in the Middle East, a region where growth is accelerating, where businesses thrive on التكيف والابتكار. It became clear that being enterprise-ready here is not just about skills, but about فهم الثقافة—understanding the way business is built on الثقة والعلاقات. Success is not just about technical expertise, but also about التواصل الفعّال، المرونة، و احترام العادات والتقاليد التي تشكّل بيئة العمل. كل ذلك يفتح الأبواب أمام فرص لا حدود لها، أمام مستقبل مليء بالتطور. من يتعلم كيف يندمج في السوق المحلي و يفهم طريقة التفكير هنا، سيجد نفسه ليس مجرد موظف، بل رائد أعمال حقيقي في عالم مليء بالإمكانات. هنا تبدأ الرحلة، هنا يصنع النجاح، وهنا يتحقق المستقبل.",
+      "likes": 654,
+      "dislikes": 0,
+      "rank_score": 500,
+      "categories": ["money", "money2", "money3", "money4", "money5"]
+    },
+    {
+      "user_id": 3,
+      "title": "Merry Xmas Everybody",
+      "body": "Testing GIF functionality",
+      "post_img": "merry_xmas.gif",
+      "likes": 100,
+      "dislikes": 30,
+      "categories": ["christianity", "lifestyle"]
+    },
+    {
+      "user_id": 16,
+      "title": "Tralarelo Tralala",
+      "body": "Sub to my OF",
+      "post_img": "",
+      "likes": 1000,
+      "dislikes": 30,
+      "categories": ["italian", "brainrot"]
+    }
+  ],
+  "comments": [
+    {
+      "post_id": 1,
+      "user_id": 1,
+      "body": "This is a comment on post 1"
+    },
+    {
+      "post_id": 1,
+      "user_id": 1,
+      "body": "This is another comment on post 1"
+    },
+    {
+      "post_id": 3,
+      "user_id": 3,
+      "body": "What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little 'clever' comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo."
+    },
+    {
+      "post_id": 2,
+      "user_id": 12,
+      "body": "Yo, this dude be crashing out frfr"
+    },
+    {
+      "post_id": 4,
+      "user_id": 5,
+      "body": "TRUEEEE!! Fr fr, OP cooked with this one!!"
+    },
+    {
+      "post_id": 4,
+      "user_id": 7,
+      "body": "Hey hello, anyone look to play some magic tonight?"
+    },
+    {
+      "post_id": 4,
+      "user_id": 9,
+      "body": "Use my FREE link to get 100BTC for free! http://youregonnagetscammedlmao.gov"
+    },
+    {
+      "post_id": 4,
+      "user_id": 6,
+      "body": "why you bully me :(((("
+    },
+    {
+      "post_id": 5,
+      "user_id": 1,
+      "body": "huh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 2,
+      "body": "huuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 3,
+      "body": "huuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 4,
+      "body": "huuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 5,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 6,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 8,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 9,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 10,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 11,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 5,
+      "user_id": 12,
+      "body": "huuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuh"
+    },
+    {
+      "post_id": 8,
+      "user_id": 9,
+      "body": "Yeeees! Slay Queeen! Use my FREE link to get 100BTC for free! http://youregonnagetscammedlmao.gov"
+    }
+  ]
+}
