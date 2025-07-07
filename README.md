@@ -1,0 +1,1 @@
+To run forum use "make cleanstart" from the root directory.
